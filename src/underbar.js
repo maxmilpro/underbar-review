@@ -102,6 +102,42 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    // create results array
+    var results = [];
+    // create transformed array
+    var transformed = [];
+
+    iterator = iterator || _.identity;
+
+    // if the array is sorted
+    if (isSorted) {
+      // iterate over the array
+      _.each(array, function(value) {
+        // call the iterator on the current element
+        var transformedValue = iterator(value);
+        // if the transformed element is not in the transformed array
+        if (_.indexOf(transformed, transformedValue) === -1) {
+          // add the transformed element to the transformed array
+          transformed.push(transformedValue);
+          // add the untransformed element to the results array
+          results.push(value);
+        }
+      });
+
+    // otherwise
+    } else {
+      // iterate over the unsorted array
+      _.each(array, function(value) {
+        // if the current element is not in the results array
+        if (_.indexOf(results, value) === -1) {
+          // add the current element to the results array
+          results.push(value);
+        }
+      });
+    }
+
+    // return results array
+    return results;
   };
 
 
