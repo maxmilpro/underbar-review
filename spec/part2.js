@@ -77,6 +77,9 @@
     });
 
     describe('every', function() {
+
+      checkForNativeMethods(_.every);
+
       var isEven = function(num) {
         return num % 2 === 0;
       };
@@ -127,6 +130,7 @@
         return number % 2 === 0;
       };
 
+      checkForNativeMethods(_.some);
 
       it('should fail by default for an empty collection', function() {
         expect(_.some([])).to.be.false;
