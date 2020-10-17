@@ -385,6 +385,22 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    // create a copy of the input array
+    var copy = array.slice();
+    // create results array
+    var results = [];
+
+    while (copy.length > 0) {
+      // generate a random index between 0 and length of copy
+      var randomIndex = Math.floor(Math.random() * copy.length);
+      // add element from the copy at the random index to the results array
+      results.push(copy[randomIndex]);
+      // remove element from copy
+      copy.splice(randomIndex, 1);
+    }
+
+    // return results array
+    return results;
   };
 
 
